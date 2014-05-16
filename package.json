@@ -3,9 +3,7 @@
   "main": "./lib/language-hn",
   "version": "0.2.2",
   "description": "A short description of your package",
-  "activationEvents": [
-    "language-hn:toggle"
-  ],
+  "activationEvents": [],
   "repository": "https://github.com/ignaciocases/language-hn",
   "license": "MIT",
   "engines": {

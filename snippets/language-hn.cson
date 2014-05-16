@@ -1,0 +1,4 @@
+'.source.hn':
+  'Console log':
+    'prefix': 'header'
+    'body': 'insert here $1'
