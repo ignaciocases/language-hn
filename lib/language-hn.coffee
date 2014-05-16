@@ -1,13 +1,41 @@
+_ = require "underscore-plus"
 LanguageHnView = require './language-hn-view'
 
 module.exports =
+  editorSubscription: null
+  providers: []
+  autocomplete: null
   languageHnView: null
 
-  activate: (state) ->
-    @languageHnView = new LanguageHnView(state.languageHnViewState)
+  ###
+   * Registers a SnippetProvider for each editor view
+  ###
+  activate: ->
+    atom.packages.activatePackage("autocomplete-plus")
+      .then (pkg) =>
+        @autocomplete = pkg.mainModule
+        @registerProviders()
 
+  ###
+   * Registers a SnippetProvider for each editor view
+  ###
+  registerProviders: ->
+    @editorSubscription = atom.workspaceView.eachEditorView (editorView) =>
+      if editorView.attached and not editorView.mini
+        provider = new HNProvider editorView
+
+        @autocomplete.registerProviderForEditorView provider, editorView
+
+        @providers.push provider
+
+  ###
+   * Cleans everything up, unregisters all SnippetProvider instances
+  ###
   deactivate: ->
-    @languageHnView.destroy()
+    @editorSubscription?.off()
+    @editorSubscription = null
 
-  serialize: ->
-    languageHnViewState: @languageHnView.serialize()
+    @providers.forEach (provider) =>
+      @autocomplete.unregisterProvider provider
+
+    @providers = []
