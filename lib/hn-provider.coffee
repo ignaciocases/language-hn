@@ -4,7 +4,7 @@ fuzzaldrin = require "fuzzaldrin"
 
 module.exports =
 class HNProvider extends Provider
-
+  wordList: null
   debug: false
 
   initialize: ->
@@ -95,7 +95,7 @@ class HNProvider extends Provider
   # Private: Generates the word list from the editor buffer(s)
   buildWordList: ->
     # Abuse the Hash as a Set
-    wordList = []
+    wordList = ["CHAK", "PIK", "MUT"]
 
     # Do we want autocompletions from all open buffers?
     if atom.config.get "autocomplete-plus.includeCompletionsFromAllBuffers"
