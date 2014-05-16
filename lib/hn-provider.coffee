@@ -102,6 +102,8 @@ class HNProvider extends Provider
       buffers = atom.project.getBuffers()
     else
       buffers = [@editor.getBuffer()]
+      console.log @editor.getBuffer()
+
 
     # Check how long the word list building took
     p = new Perf "Building word list", {@debug}
@@ -110,8 +112,8 @@ class HNProvider extends Provider
     # Collect words from all buffers using the regular expression
     matches = []
     matches.push(buffer.getText().match(@wordRegex)) for buffer in buffers
-    console.log(matches)
-    console.log("hey")
+    console.log matches
+    console.log "hey"
 
     # Flatten the matches, make it an unique array
     wordList = _.flatten matches
