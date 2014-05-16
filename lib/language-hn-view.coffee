@@ -1,4 +1,5 @@
 {View} = require 'atom'
+HNProvider = require "./hn-provider"
 
 module.exports =
 class LanguageHnView extends View
@@ -6,8 +7,8 @@ class LanguageHnView extends View
     @div class: 'language-hn overlay from-top', =>
       @div "The LanguageHn package is Alive! It's ALIVE!", class: "message"
 
-  initialize: (serializeState) ->
-    atom.workspaceView.command "language-hn:toggle", => @toggle()
+  initialize: (@editorView) ->
+    atom.workspaceView.command "language-hn:glyphlist", => @glyphList()
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
@@ -16,9 +17,6 @@ class LanguageHnView extends View
   destroy: ->
     @detach()
 
-  toggle: ->
-    console.log "LanguageHnView was toggled!"
-    if @hasParent()
-      @detach()
-    else
-      atom.workspaceView.append(this)
+  glyphList: ->
+    console.log "LanguageHnView is loading the list!"
+    @registerProvider new HNProvider(@editorView)

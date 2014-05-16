@@ -1,7 +1,12 @@
-_ = require "autocomplete-plus"
+_ = require "underscore-plus"
+Suggestion = require "autocomplete-plus"
+Utils = require "autocomplete-plus"
+fuzzaldrin = require "fuzzaldrin"
+Provider = require "autocomplete-plus"
+Perf = require "autocomplete-plus"
 
 module.exports =
-class FuzzyProvider extends Provider
+class HNProvider extends Provider
   wordList: null
   debug: false
 
@@ -93,7 +98,7 @@ class FuzzyProvider extends Provider
   # Private: Generates the word list from the editor buffer(s)
   buildWordList: ->
     # Abuse the Hash as a Set
-    wordList = ["K'AWIL"]
+    wordList = ["CHAK", "MUT", "PIK"]
 
     # Do we want autocompletions from all open buffers?
     if atom.config.get "autocomplete-plus.includeCompletionsFromAllBuffers"

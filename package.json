@@ -9,5 +9,9 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "underscore-plus": "~1.1.2",
+    "autocomplete-plus": "git://github.com/saschagehlich/autocomplete-plus.git",
+    "fuzzaldrin": "~1.0.0"
+  }
 }
