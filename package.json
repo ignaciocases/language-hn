@@ -6,7 +6,7 @@
   "activationEvents": [
     "language-hn:toggle"
   ],
-  "repository": "https://github.com/ignaciocases/language-hn.git",
+  "repository": "https://github.com/ignaciocases/language-hn",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"

@@ -1,0 +1,275 @@
+'name': "HN"
+'fileTypes': [
+  'hn'
+]
+'patterns': [
+  {
+    'begin': '(<\\?)\\s*([-_a-zA-Z0-9]+)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.hn'
+      '2':
+        'name': 'entity.name.tag.hn'
+    'end': '(\\?>)'
+    'name': 'meta.tag.preprocessor.hn'
+    'patterns': [
+      {
+        'match': ' ([a-zA-Z-]+)'
+        'name': 'entity.other.attribute-name.hn'
+      }
+      {
+        'include': '#doublequotedString'
+      }
+      {
+        'include': '#singlequotedString'
+      }
+    ]
+  }
+  {
+    'begin': '(<!)(DOCTYPE)\\s+([:a-zA-Z_][:a-zA-Z0-9_.-]*)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.hn'
+      '2':
+        'name': 'keyword.other.doctype.hn'
+      '3':
+        'name': 'variable.language.documentroot.hn'
+    'end': '\\s*(>)'
+    'name': 'meta.tag.sgml.doctype.hn'
+    'patterns': [
+      {
+        'include': '#internalSubset'
+      }
+    ]
+  }
+  {
+    'begin': '<[!%]--'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.hn'
+    'end': '--%?>'
+    'name': 'comment.block.hn'
+  }
+  {
+    'begin': '(<)((?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+))(?=(\\s[^>]*)?></\\2>)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.hn'
+      '3':
+        'name': 'entity.name.tag.namespace.hn'
+      '4':
+        'name': 'entity.name.tag.hn'
+      '5':
+        'name': 'punctuation.separator.namespace.hn'
+      '6':
+        'name': 'entity.name.tag.localname.hn'
+    'end': '(>(<))/(?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+)(>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.hn'
+      '2':
+        'name': 'meta.scope.between-tag-pair.hn'
+      '3':
+        'name': 'entity.name.tag.namespace.hn'
+      '4':
+        'name': 'entity.name.tag.hn'
+      '5':
+        'name': 'punctuation.separator.namespace.hn'
+      '6':
+        'name': 'entity.name.tag.localname.hn'
+      '7':
+        'name': 'punctuation.definition.tag.hn'
+    'name': 'meta.tag.no-content.hn'
+    'patterns': [
+      {
+        'include': '#tagStuff'
+      }
+    ]
+  }
+  {
+    'begin': '(</?)(?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.hn'
+      '2':
+        'name': 'entity.name.tag.namespace.hn'
+      '3':
+        'name': 'entity.name.tag.hn'
+      '4':
+        'name': 'punctuation.separator.namespace.hn'
+      '5':
+        'name': 'entity.name.tag.localname.hn'
+    'end': '(/?>)'
+    'name': 'meta.tag.hn'
+    'patterns': [
+      {
+        'include': '#tagStuff'
+      }
+    ]
+  }
+  {
+    'include': '#entity'
+  }
+  {
+    'include': '#bare-ampersand'
+  }
+  {
+    'begin': '<%@'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.begin.hn'
+    'end': '%>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.end.hn'
+    'name': 'source.java-props.embedded.hn'
+    'patterns': [
+      {
+        'match': 'page|include|taglib'
+        'name': 'keyword.other.page-props.hn'
+      }
+    ]
+  }
+  {
+    'begin': '<%[!=]?(?!--)'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.begin.hn'
+    'end': '(?!--)%>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.end.hn'
+    'name': 'source.java.embedded.hn'
+    'patterns': [
+      {
+        'include': 'source.java'
+      }
+    ]
+  }
+  {
+    'begin': '<!\\[CDATA\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.hn'
+    'end': ']]>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.hn'
+    'name': 'string.unquoted.cdata.hn'
+  }
+]
+'repository':
+  'EntityDecl':
+    'begin': '(<!)(ENTITY)\\s+(%\\s+)?([:a-zA-Z_][:a-zA-Z0-9_.-]*)(\\s+(?:SYSTEM|PUBLIC)\\s+)?'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.hn'
+      '2':
+        'name': 'keyword.other.entity.hn'
+      '3':
+        'name': 'punctuation.definition.entity.hn'
+      '4':
+        'name': 'variable.language.entity.hn'
+      '5':
+        'name': 'keyword.other.entitytype.hn'
+    'end': '(>)'
+    'patterns': [
+      {
+        'include': '#doublequotedString'
+      }
+      {
+        'include': '#singlequotedString'
+      }
+    ]
+  'bare-ampersand':
+    'match': '&'
+    'name': 'invalid.illegal.bad-ampersand.hn'
+  'doublequotedString':
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.hn'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.hn'
+    'name': 'string.quoted.double.hn'
+    'patterns': [
+      {
+        'include': '#entity'
+      }
+      {
+        'include': '#bare-ampersand'
+      }
+    ]
+  'entity':
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.hn'
+      '3':
+        'name': 'punctuation.definition.constant.hn'
+    'match': '(&)([:a-zA-Z_][:a-zA-Z0-9_.-]*|#[0-9]+|#x[0-9a-fA-F]+)(;)'
+    'name': 'constant.character.entity.hn'
+  'internalSubset':
+    'begin': '(\\[)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.hn'
+    'end': '(\\])'
+    'name': 'meta.internalsubset.hn'
+    'patterns': [
+      {
+        'include': '#EntityDecl'
+      }
+      {
+        'include': '#parameterEntity'
+      }
+    ]
+  'parameterEntity':
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.hn'
+      '3':
+        'name': 'punctuation.definition.constant.hn'
+    'match': '(%)([:a-zA-Z_][:a-zA-Z0-9_.-]*)(;)'
+    'name': 'constant.character.parameter-entity.hn'
+  'singlequotedString':
+    'begin': '\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.hn'
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.hn'
+    'name': 'string.quoted.single.hn'
+    'patterns': [
+      {
+        'include': '#entity'
+      }
+      {
+        'include': '#bare-ampersand'
+      }
+    ]
+  'tagStuff':
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'entity.other.attribute-name.namespace.hn'
+          '2':
+            'name': 'entity.other.attribute-name.hn'
+          '3':
+            'name': 'punctuation.separator.namespace.hn'
+          '4':
+            'name': 'entity.other.attribute-name.localname.hn'
+        'match': ' (?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9]+)='
+      }
+      {
+        'include': '#doublequotedString'
+      }
+      {
+        'include': '#singlequotedString'
+      }
+    ]
+'scopeName': 'source.hn'
