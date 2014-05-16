@@ -1,14 +1,15 @@
 {
   "name": "language-hn",
   "main": "./lib/language-hn",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A short description of your package",
-  "activationEvents": ["language-hn:toggle"],
+  "activationEvents": [
+    "language-hn:toggle"
+  ],
   "repository": "https://github.com/ignaciocases/language-hn.git",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
