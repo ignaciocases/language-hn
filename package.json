@@ -2,12 +2,14 @@
   "name": "language-hn",
   "main": "./lib/language-hn",
   "version": "0.2.5",
-  "description": "A short description of your package",
+  "description": "Transcription and transliteration of glyphic texts",
   "activationEvents": [],
   "repository": "https://github.com/ignaciocases/language-hn",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "autocomplete-plus": ">=0.19.0"
+  }
 }
