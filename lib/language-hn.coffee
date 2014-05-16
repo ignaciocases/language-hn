@@ -1,5 +1,6 @@
 _ = require "underscore-plus"
-LanguageHnView = require './language-hn-view'
+# LanguageHnView = require './language-hn-view'
+HNProvider = require "./hn-provider"
 
 module.exports =
   editorSubscription: null

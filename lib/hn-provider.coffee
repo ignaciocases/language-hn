@@ -4,7 +4,7 @@ _ = require "underscore-plus"
 
 module.exports =
 class HNProvider extends Provider
-  wordList: null
+
   debug: false
 
   initialize: ->
