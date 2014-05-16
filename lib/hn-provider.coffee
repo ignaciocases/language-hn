@@ -1,6 +1,6 @@
-{Provider, Suggestion} = require "autocomplete-plus"
-fuzzaldrin = require "fuzzaldrin"
 _ = require "underscore-plus"
+{Provider, Suggestion, Utils, Perf} = require "autocomplete-plus"
+fuzzaldrin = require "fuzzaldrin"
 
 module.exports =
 class HNProvider extends Provider
