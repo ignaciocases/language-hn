@@ -95,7 +95,7 @@ class HNProvider extends Provider
   # Private: Generates the word list from the editor buffer(s)
   buildWordList: ->
     # Abuse the Hash as a Set
-    wordList = ["CHAK", "PIK", "MUT"]
+    wordList = []
 
     # Do we want autocompletions from all open buffers?
     if atom.config.get "autocomplete-plus.includeCompletionsFromAllBuffers"
@@ -111,6 +111,7 @@ class HNProvider extends Provider
     matches = []
     matches.push(buffer.getText().match(@wordRegex)) for buffer in buffers
     console.log(matches)
+    console.log("hey")
 
     # Flatten the matches, make it an unique array
     wordList = _.flatten matches
