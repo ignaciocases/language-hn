@@ -1,4 +1,21 @@
 '.source.hn':
-  'Console log':
+  'Corpora Header':
     'prefix': 'header'
-    'body': 'insert here $1'
+    'body': """/*!
+                @site: $1
+                @mon: $2
+                @object: $3
+                @objectOther:
+                @facture: $4
+                @collation: ic
+                @colVersion: 0.1
+                @since: $5/5/2014
+                @notes:
+                @references: Lacadena (1995)
+                @biblio:
+                @imageFile:
+                @drawingAuthor: $6
+                @textDisposition:
+                @textDimensions:
+               */
+               $7"""
