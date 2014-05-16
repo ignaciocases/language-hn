@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "A short description of your package",
   "activationEvents": ["language-hn:toggle"],
-  "repository": "https://github.com/ignaciocases/language-hn",
+  "repository": "https://github.com/ignaciocases/language-hn.git",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
