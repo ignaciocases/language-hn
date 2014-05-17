@@ -1,3 +1,4 @@
+{Range}  = require "atom"
 _ = require "underscore-plus"
 {Provider, Suggestion, Utils} = require "autocomplete-plus"
 fuzzaldrin = require "fuzzaldrin"
@@ -35,9 +36,9 @@ class HNProvider extends Provider
       # Check in the database
 
       if result == "CHAK._1"
-        label = "CHAK (red)"
+        label = "CHAK (red) | CHAK-ki, CHAK-ka"
       else if result == "CHAK._2"
-        label = "CHAK (god)"
+        label = "CHAK (god) | CHAK-ki, CHAK-ka"
       else
         label = result
 
