@@ -8,7 +8,13 @@ class HNProvider extends Provider
   exclusive: true
 
   buildSuggestions: ->
-    return ["CHAN", "CH'EN"]
+    chan = new Suggestion this,
+        word: "CHAN"
+        prefix: "cha"
+        label: "CHAN-na CHAN"
+        data:
+          body: "CHAN"
+    return [chan]
 
   confirm: ->
     return true
