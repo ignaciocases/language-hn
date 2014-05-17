@@ -4,7 +4,7 @@ fuzzaldrin = require "fuzzaldrin"
 
 module.exports =
 class HNProvider extends Provider
-  wordRegex: /\b\w*[a-zA-Z_'#?\.-]+\w*\b/g
+  wordRegex: /(?!([a-zA-Z0-9-]+:)\s)((')*[a-zA-Z0-9\?_'².=#*-]+)/g
 
   initialize: ->
     @buildWordList()
