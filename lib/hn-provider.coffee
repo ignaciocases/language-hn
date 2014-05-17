@@ -25,9 +25,21 @@ class HNProvider extends Provider
 
     # Flatten the matches, make it an unique array
     wordList = _.flatten matches
-    wordList = unique wordList
-    @wordList = wordList
-
+  #   wordList = unique wordList
+  #   @wordList = wordList
+  #
+  # unique: (arr) ->
+  #   out = []
+  #   seen = new Set
+  #
+  #   i = arr.length
+  #   while i--
+  #     item = arr[i]
+  #     unless seen.has item
+  #       out.push item
+  #       seen.add item
+  #
+  #   return out
 
   buildSuggestions: ->
     selection = @editor.getSelection()
@@ -101,17 +113,3 @@ class HNProvider extends Provider
     # , 100)
 
     return true # Don't fall back to the default behavior
-
-
-  unique: (arr) ->
-    out = []
-    seen = new Set
-
-    i = arr.length
-    while i--
-      item = arr[i]
-      unless seen.has item
-        out.push item
-        seen.add item
-
-    return out
