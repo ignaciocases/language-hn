@@ -39,7 +39,7 @@ class HNProvider extends Provider
       else if result == "CHAK._2"
         label = "CHAK (god)"
       else
-        continue
+        label = result
 
       # continue if body is prefix
 
