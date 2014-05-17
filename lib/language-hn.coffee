@@ -25,6 +25,9 @@ module.exports =
       if editorView.attached and not editorView.mini
         provider = new HNProvider editorView
 
+        @providers.forEach (prov) =>
+          @autocomplete.unregisterProvider prov
+
         @autocomplete.registerProviderForEditorView provider, editorView
 
         @providers.push provider
