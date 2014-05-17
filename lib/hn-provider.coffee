@@ -30,7 +30,7 @@ class HNProvider extends Provider
 
 
     suggestions = for result in results
-      resultPath = path.resolve directory, result
+      # resultPath = path.resolve directory, result
 
       # Check in the database
 
