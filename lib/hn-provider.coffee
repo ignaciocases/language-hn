@@ -1,11 +1,10 @@
 _ = require "underscore-plus"
-{Provider, Suggestion, Utils, Perf} = require "autocomplete-plus"
+{Provider, Suggestion, Utils} = require "autocomplete-plus"
 fuzzaldrin = require "fuzzaldrin"
 
 module.exports =
 class HNProvider extends Provider
-  wordList: null
-  debug: false
+  wordRegex: /\b\w*[a-zA-Z_-'#?.]+\w*\b/g
 
   initialize: ->
     @buildWordList()
@@ -105,10 +104,6 @@ class HNProvider extends Provider
       console.log @editor.getBuffer()
 
 
-    # Check how long the word list building took
-    p = new Perf "Building word list", {@debug}
-    p.start()
-
     # Collect words from all buffers using the regular expression
     matches = []
     matches.push(buffer.getText().match(@wordRegex)) for buffer in buffers
@@ -128,9 +123,6 @@ class HNProvider extends Provider
   #
   # Returns an {Array} of Suggestion instances
   findSuggestionsForWord: (prefix) ->
-    p = new Perf "Finding matches for '#{prefix}'", {@debug}
-    p.start()
-
     # Merge the scope specific words into the default word list
     wordList = @wordList.concat @getCompletionsForCursorScope()
     words = fuzzaldrin.filter wordList, prefix
