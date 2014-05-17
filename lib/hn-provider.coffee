@@ -10,36 +10,7 @@ class HNProvider extends Provider
   exclusive: true
 
   initialize: ->
-    @buildWordList()
 
-  buildWordList: ->
-        # Abuse the Hash as a Set
-    wordList = []
-
-    # we will want autocompletions from a given source in the future
-    buffers = [@editor.getBuffer()]
-
-    # Collect words from all buffers using the regular expression
-    matches = []
-    matches.push(buffer.getText().match(@wordRegex)) for buffer in buffers
-
-    # Flatten the matches, make it an unique array
-    wordList = _.flatten matches
-  #   wordList = unique wordList
-  #   @wordList = wordList
-  #
-  # unique: (arr) ->
-  #   out = []
-  #   seen = new Set
-  #
-  #   i = arr.length
-  #   while i--
-  #     item = arr[i]
-  #     unless seen.has item
-  #       out.push item
-  #       seen.add item
-  #
-  #   return out
 
   buildSuggestions: ->
     selection = @editor.getSelection()
@@ -53,7 +24,17 @@ class HNProvider extends Provider
   findSuggestionsForPrefix: (prefix) ->
     glyphs = ["CHAN", "CH'EN", "K'AWIL", "CHAK._1", "CHAK._2", "?.#Water_Serpent"]
     # glyphs = @glyphs.concat @getCompletionsForCursorScope()
-    console.log @wordList
+
+    # we will want autocompletions from a given source in the future
+    buffers = [@editor.getBuffer()]
+
+    # Collect words from all buffers using the regular expression
+    matches = []
+    matches.push(buffer.getText().match(@wordRegex)) for buffer in buffers
+
+    # Flatten the matches, make it an unique array
+    aList = _.flatten matches
+    glyphs = glyphs.concat aList
 
     results = fuzzaldrin.filter glyphs, prefix
 
