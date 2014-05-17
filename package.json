@@ -1,7 +1,7 @@
 {
   "name": "language-hn",
   "main": "./lib/language-hn",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "description": "Transcription and transliteration of glyphic texts",
   "activationEvents": [],
   "repository": "https://github.com/ignaciocases/language-hn",
