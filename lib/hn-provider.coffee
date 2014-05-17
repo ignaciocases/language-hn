@@ -26,7 +26,11 @@ class HNProvider extends Provider
     # glyphs = @glyphs.concat @getCompletionsForCursorScope()
 
     # we will want autocompletions from a given source in the future
-    buffers = [@editor.getBuffer()]
+        # Do we want autocompletions from all open buffers?
+    if atom.config.get "autocomplete-plus.includeCompletionsFromAllBuffers"
+      buffers = atom.project.getBuffers()
+    else
+      buffers = [@editor.getBuffer()]
 
     # Collect words from all buffers using the regular expression
     matches = []
