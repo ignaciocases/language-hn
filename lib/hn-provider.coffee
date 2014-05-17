@@ -5,7 +5,7 @@ fuzzaldrin = require "fuzzaldrin"
 module.exports =
 class HNProvider extends Provider
   wordList: null
-  wordRegex: /(?!([a-zA-Z0-9-]+:)\s)((')*[a-zA-Z0-9\?_'².=#*-]+)/g
+  wordRegex: /(?!([a-zA-Z0-9-]+:)\s)((')*[a-zA-Z0-9?_'².=#*-]+)/g
   debug: false
 
   initialize: ->
@@ -103,7 +103,6 @@ class HNProvider extends Provider
       buffers = atom.project.getBuffers()
     else
       buffers = [@editor.getBuffer()]
-      console.log @editor.getBuffer()
 
 
     # Collect words from all buffers using the regular expression
@@ -115,7 +114,7 @@ class HNProvider extends Provider
     wordList = Utils.unique wordList
     @wordList = wordList
 
-    p.stop()
+    console.log @wordList
 
   # Private: Finds possible matches for the given string / prefix
   #
