@@ -53,7 +53,7 @@ class HNProvider extends Provider
       else if result == "CHAK._2"
         label = "CHAK (god) | CHAK-ki, CHAK-ka"
       else
-        label = result
+        label = "" #result
 
       # chan = new Suggestion this,
       #     word: "CHAN"
