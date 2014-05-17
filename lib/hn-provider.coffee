@@ -35,6 +35,7 @@ class HNProvider extends Provider
     # Flatten the matches, make it an unique array
     aList = _.flatten matches
     glyphs = glyphs.concat aList
+    glyphs = @unique glyphs
 
     results = fuzzaldrin.filter glyphs, prefix
 
@@ -65,6 +66,19 @@ class HNProvider extends Provider
           body: result
 
     return suggestions
+
+  unique: (arr) ->
+    out = []
+    seen = new Set
+
+    i = arr.length
+    while i--
+      item = arr[i]
+      unless seen.has item
+        out.push item
+        seen.add item
+
+    return out
 
   # Private: Finds autocompletions in the current syntax scope (e.g. css values)
   #
