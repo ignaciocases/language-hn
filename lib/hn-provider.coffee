@@ -112,11 +112,11 @@ class HNProvider extends Provider
     # Collect words from all buffers using the regular expression
     matches = []
     matches.push(buffer.getText().match(@wordRegex)) for buffer in buffers
-    console.log matches
     console.log "hey"
 
     # Flatten the matches, make it an unique array
     wordList = _.flatten matches
+    console.log wordList
     wordList = Utils.unique wordList
     @wordList = wordList
 
