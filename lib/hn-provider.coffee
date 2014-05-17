@@ -8,16 +8,70 @@ class HNProvider extends Provider
   exclusive: true
 
   buildSuggestions: ->
-    chan = new Suggestion this,
-        word: "CHAN"
-        prefix: "cha"
-        label: "CHAN-na CHAN"
+    selection = @editor.getSelection()
+    prefix = @prefixOfSelection selection
+    return unless prefix.length
+
+    suggestions = @findSuggestionsForPrefix prefix
+    return unless suggestions.length
+    return suggestions
+
+  findSuggestionsForPrefix: (prefix) ->
+    glyphs = ["CHAN", "CH'EN", "K'AWIL", "CHAK._1", "CHAK._2", "#Water_Serpent"]
+
+    results = fuzzaldrin.filter glyphs, prefix
+
+    # chan = new Suggestion this,
+    #     word: "CHAN"
+    #     prefix: "cha"
+    #     label: "CHAN-na CHAN"
+    #     data:
+    #       body: "CHAN"
+
+
+    suggestions = for result in results
+      resultPath = path.resolve directory, result
+
+      # Check in the database
+
+      if result == "CHAK._1"
+        label = "CHAK (red)"
+      else if result == "CHAK._2"
+        label = "CHAK (god)"
+      else
+        continue
+
+      # continue if body is prefix
+
+      new Suggestion this,
+        word: result
+        prefix: prefix
+        label: label
         data:
-          body: "CHAN"
-    return [chan]
+          body: result
+
+    return suggestions
 
   confirm: ->
-    return true
+    selection = @editor.getSelection()
+    startPosition = selection.getBufferRange().start
+    buffer = @editor.getBuffer()
+
+    # Replace the prefix with the body
+    cursorPosition = @editor.getCursorBufferPosition()
+    buffer.delete Range.fromPointWithDelta(cursorPosition, 0, -suggestion.prefix.length)
+    @editor.insertText suggestion.data.body
+
+    # Move the cursor behind the body
+    suffixLength = suggestion.data.body.length - suggestion.prefix.length
+    @editor.setSelectedBufferRange [startPosition, [startPosition.row, startPosition.column + suffixLength]]
+
+    setTimeout(=>
+      @editorView.trigger "autocomplete-plus:activate"
+    , 100)
+
+    return false # Don't fall back to the default behavior
+
   # initialize: ->
   #   @buildWordList()
   #
