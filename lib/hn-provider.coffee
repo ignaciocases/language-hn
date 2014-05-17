@@ -52,7 +52,7 @@ class HNProvider extends Provider
 
     return suggestions
 
-  confirm: ->
+  confirm: (suggestion) ->
     selection = @editor.getSelection()
     startPosition = selection.getBufferRange().start
     buffer = @editor.getBuffer()
